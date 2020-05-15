@@ -1,0 +1,111 @@
+Trying to upgr Reat types.
+Need to stay on old React types for a while, otherwise 1000 Typescript compiler errors:
+
+/opt/talkyard/server/node_modules/@types/react-dom/index.d.ts(94,18): error TS2707: Generic type 'ReactElement<P, T>' requires between 1 and 2 type arguments.
+    (
+        element: ReactElement[],  <——   
+        container: Element | DocumentFragment | null,
+        callback?: () => void
+    ): Component<any, ComponentState> | Element | void;
+}
+[14:20:58] Starting 'compileEditorTypescript-concatScripts'...
+[14:20:58] Starting 'compileEditorTypescript'...
+/opt/talkyard/server/node_modules/@types/react-dom/index.d.ts(94,18): error TS2707: Generic type 'ReactElement<P, T>' requires between 1 and 2 type arguments.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2746,14): error TS2300: Duplicate identifier 'LibraryManagedAttributes'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2759,13): error TS2717: Subsequent property declarations must have the same type.  Property 'a' must be of type 'DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>', but here has type 'DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2760,13): error TS2717: Subsequent property declarations must have the same type.  Property 'abbr' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2761,13): error TS2717: Subsequent property declarations must have the same type.  Property 'address' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2762,13): error TS2717: Subsequent property declarations must have the same type.  Property 'area' must be of type 'DetailedHTMLProps<AreaHTMLAttributes<HTMLAreaElement>, HTMLAreaElement>', but here has type 'DetailedHTMLProps<AreaHTMLAttributes<HTMLAreaElement>, HTMLAreaElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2763,13): error TS2717: Subsequent property declarations must have the same type.  Property 'article' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2764,13): error TS2717: Subsequent property declarations must have the same type.  Property 'aside' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2765,13): error TS2717: Subsequent property declarations must have the same type.  Property 'audio' must be of type 'DetailedHTMLProps<AudioHTMLAttributes<HTMLAudioElement>, HTMLAudioElement>', but here has type 'DetailedHTMLProps<AudioHTMLAttributes<HTMLAudioElement>, HTMLAudioElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2766,13): error TS2717: Subsequent property declarations must have the same type.  Property 'b' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2767,13): error TS2717: Subsequent property declarations must have the same type.  Property 'base' must be of type 'DetailedHTMLProps<BaseHTMLAttributes<HTMLBaseElement>, HTMLBaseElement>', but here has type 'DetailedHTMLProps<BaseHTMLAttributes<HTMLBaseElement>, HTMLBaseElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2768,13): error TS2717: Subsequent property declarations must have the same type.  Property 'bdi' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2769,13): error TS2717: Subsequent property declarations must have the same type.  Property 'bdo' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+/opt/talkyard/server/node_modules/@types/react-dom/node_modules/@types/react/index.d.ts(2770,13): error TS2717: Subsequent property declarations must have the same type.  Property 'big' must be of type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>', but here has type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
+...  9999 more Typescript errors ...
+
+
+
+
+With React >= 16.9:
+
+
+slim-bundle.js:3423 Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+Please update the following components: BrowserRouter, ExtReactRootNavComponent, ForumComponent, LoadAndListTopics, Route, Router, Switch, TopBar
+
+
+
+
+slim-bundle.js:3423 Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+Please update the following components: LoadAndListTopics, Route, Router, Switch
+
+
+
+slim-bundle.js:3423 Warning: componentWillUpdate has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+Please update the following components: ContextBar
+
+
+
+Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+Please update the following components: SingleTopic, Watchbar
+
+
+
+Oh seems will need to upgr the TransitionGroup dep:
+
+        slim-bundle.js:3423 Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+        * Move code with side effects to componentDidMount, and set initial state in the constructor.
+        * Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+        Please update the following components: CSSTransitionGroupChild, ContextBar, TransitionGroup
+
+
+        slim-bundle.js:3423 Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+        * Move data fetching code or side effects to componentDidUpdate.
+        * If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+        * Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+        Please update the following components: TransitionGroup
+
+
+
+
+And React-Router:
+
+        slim-bundle.js:3423 Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+        * Move data fetching code or side effects to componentDidUpdate.
+        * If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+        * Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+        Please update the following components: Route, Router, Switch
+
+
+        Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-unsafe-component-lifecycles for details.
+
+        * Move code with side effects to componentDidMount, and set initial state in the constructor.
+        * Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.
+
+        Please update the following components: BrowserRouter, Route, Router, Switch
+
